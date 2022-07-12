@@ -1,4 +1,0 @@
-python-whois
-requests
-whois
-shodan
