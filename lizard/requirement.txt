@@ -1,0 +1,7 @@
+python-whois
+requests
+whois
+shodan
+scapy-python3
+dill
+pipenv
