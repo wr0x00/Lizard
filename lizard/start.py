@@ -80,13 +80,13 @@ if __name__ == '__main__':
         
         #EXP
         if args.SMBboom:
+            import os
+            os.system("pipenv install")
+            os.system("pipenv shell")
             if args.agent:
-                import os
                 os.system("python modules/SMSBoom_master/smsboom.py -e -p "+args.SMBboom)
             else:
-                import os
                 os.system("python modules/SMSBoom_master/smsboom.py -p "+args.SMBboom)
-
         if args.ddos==True:
             import os
             os.system("python2 modules/ddos.py")
