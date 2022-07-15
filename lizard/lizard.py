@@ -3,7 +3,6 @@ import argparse
 from logging import exception
 import re
 import string
-from tkinter import E
 import modules.sniff
 import argparse
 
