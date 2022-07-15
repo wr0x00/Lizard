@@ -8,7 +8,6 @@ import socket
 import uuid
 import time
 import os
- 
 class exp:
     def ping(attackIP):
         count = 1

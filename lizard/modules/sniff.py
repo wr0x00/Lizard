@@ -123,7 +123,14 @@ def isIP(ip):
      return False
   else:
    return True
-
+def isurl(url):
+    header = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
+    import requests as r
+    re=r.get(url,headers=header)
+    if re.status_code==200:
+        return True
+    if re.status_code==404:
+        return False
 class ScanPort:
     # 端口扫描工具
     def __init__(self,ip):
@@ -135,6 +142,8 @@ class ScanPort:
             res = s.connect_ex((self.ip, port))
             if res == 0:  # 端口开启
                 print('地址:{}\033[0;32;40m端口:{} \033[0m'.format(self.ip, port))
+                with open(self.ip+"_port", 'a+') as f:
+                    f.write(str(port) + '\n')
         except Exception as e:
             print(e)
         finally:
@@ -145,6 +154,8 @@ class ScanPort:
         from multiprocessing.dummy import Pool as ThreadPool
         ports = [i for i in range(0, 65535)]
         socket.setdefaulttimeout(0.5)
+        truncate = open(self.ip+"_port",'w')
+        truncate.close()
         print("正在扫描")
         # 开始时间
         t1 = datetime.now()
