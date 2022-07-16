@@ -59,7 +59,7 @@ if __name__ == '__main__':
         parser.add_argument("-lh", "--lhost",type=str, help="local host,Add according to the other option instructions")
         parser.add_argument("-url", "--url",type=str, help="target web's url,Add according to the other option instructions")
         
-                
+        parser.add_argument("-dos", "--dos",action='store_true',help="dos attack")        
         parser.add_argument("-ws", "--webshell",type=str, nargs="+",help="webshell url and passwd")      
         parser.add_argument("-SMB", "--SMBboom",type=str, help="SMBboom exploit number,could use with -agent")
         parser.add_argument("-ddos", "--ddos",action='store_true', help="ddos exploit,don't need other option,need python2 environment")
@@ -80,6 +80,10 @@ if __name__ == '__main__':
             modules.sniff.shodan_search(args.shodan)
         
         #EXP
+        if args.dos and args.rhost and args.rport:
+            import modules.dosattack as y
+            y.exp(args.rhost,args.rport,args.thread)
+
         if args.webshell:
             import modules.webshell as w
             t=0
