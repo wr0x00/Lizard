@@ -1,5 +1,6 @@
 
 import argparse
+from ast import arg
 from logging import exception
 import re
 import string
@@ -51,6 +52,7 @@ if __name__ == '__main__':
         parser.add_argument("-sw", "--scanwebdirURL",type=str, help="web address which be scaned dictionary")
         parser.add_argument("-d", "--directory",type=str, help="dictionary which be need",default="modules/dict.txt")
         parser.add_argument("-t", "--thread",type=int, help="threads which be need",default=60)
+        parser.add_argument("-poc", "--poc",type=str, help="poc ip")
         #EXP
         parser.add_argument("-agent", "--agent",action='store_true', help="start agent")
         parser.add_argument("-rp", "--rport",type=int, help="target port,Add according to the other option instructions")
@@ -61,7 +63,6 @@ if __name__ == '__main__':
         
         parser.add_argument("-dos", "--dos",action='store_true',help="dos attack")        
         parser.add_argument("-ws", "--webshell",type=str, nargs="+",help="webshell url and passwd")      
-        parser.add_argument("-SMB", "--SMBboom",type=str, help="SMBboom exploit number,could use with -agent")
         parser.add_argument("-ddos", "--ddos",action='store_true', help="ddos exploit,don't need other option,need python2 environment")
         parser.add_argument("-cve-2018-9995", "--cve2018_9995",action='store_true', help="cve-2018-9995 exploit,use with -rp and -rh")
         parser.add_argument("-cve-2022-21907", "--cve2022_21907",action='store_true', help="cve-cve-2022_21907 exploit,use with -rh or -url")
@@ -78,7 +79,9 @@ if __name__ == '__main__':
             modules.sniff.start_dirscan(args.scanwebdirURL,args.directory,args.thread)
         if args.shodan:
             modules.sniff.shodan_search(args.shodan)
-        
+        if args.poc:
+            import os
+            os.system("python modules/ws.py -t"+args.poc)
         #EXP
         if args.dos and args.rhost and args.rport:
             import modules.dosattack as y
@@ -93,7 +96,8 @@ if __name__ == '__main__':
                 if t==1:
                     passwd=i
                 t+=1
-            w.exp(url,passwd)                
+            w.exp(url,passwd)   
+        '''             
         if args.SMBboom:
             import os
             os.system("pipenv shell")
@@ -101,6 +105,7 @@ if __name__ == '__main__':
                 os.system("python modules/SMSBoom_master/smsboom.py run -e -p "+args.SMBboom)
             else:
                 os.system("python modules/SMSBoom_master/smsboom.py run -p "+args.SMBboom)
+        '''
         if args.ddos==True:
             import os
             os.system("python2 modules/ddos.py")
