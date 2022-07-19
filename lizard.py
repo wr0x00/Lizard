@@ -11,19 +11,14 @@ def start_portscan(ip):
     while not modules.sniff.isIP(ip):
         ip = input('地址不正确或未在线，请输入正确的IP地址:\n')
     modules.sniff.ScanPort(ip).start()
-def _2018_9995():
-    import modules.C2018_9995_EXP as a
-    url=input("地址: ")
-    door=input("p：")
-    a.exp(url,door)
     
-def connect_mysql(host,user):
+def connect_mysql(host,user,pwd):
     import mysql.connector
     try:
         mydb = mysql.connector.connect(
           host=host,
           user=user,
-          passwd=input('Enter password:')
+          passwd=pwd
         )
         mycursor = mydb.cursor()
     except:
@@ -44,8 +39,7 @@ def connect_mysql(host,user):
 
 if __name__ == '__main__':
         parser = argparse.ArgumentParser()
-        parser.add_argument("-mh","--mysqlhost",type=str, help="mysql host")
-        parser.add_argument("-mu", "--mysqluser",type=str, help="mysql username")
+        parser.add_argument("-m","--mysql",type=str,nargs="+", help="mysql host and mysql user,port")
         parser.add_argument("-sp", "--scanportIP",type=str, help="scan ports IP address")
         parser.add_argument("-whois", "--whois",type=str, help="IP whois info")
         parser.add_argument("-shodan", "--shodan",type=str, help="shodan search")
@@ -69,8 +63,20 @@ if __name__ == '__main__':
         
         args = parser.parse_args()
         
-        if args.mysqlhost and args.mysqluser:
-            connect_mysql(args.mysqlhost,args.mysqluser)
+        if args.mysql:
+            t=0
+            for i in args.mysql:
+                if not i:
+                    break
+                if t==0:
+                    host=i
+                if t==1:
+                    user=i
+                if t==2:
+                    pwd=i
+                t+=1  
+            connect_mysql(host,user,pwd)
+
         if args.scanportIP:
             start_portscan(args.scanportIP)
         if args.whois:
