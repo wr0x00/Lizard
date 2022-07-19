@@ -2,5 +2,5 @@ python-whois
 requests
 python-whois
 shodan
-scapy-python3
+scapy-python
 dill

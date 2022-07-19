@@ -21,7 +21,7 @@ def shodan_search(str):
     try:
         results = api.search(str)
         for result in results['matches']:         
-                print ("\033[0;32;40m%s\033[0m:%s|%s|%s"%(result['ip_str'],result['port'],result['location']['country_name'],result['hostnames']))
+                print ("\033[0;32;40m%s\033[0m:\033[0;31m%s\033[1;37;40m|%s|%s"%(result['ip_str'],result['port'],result['location']['country_name'],result['hostnames']))
         print ('Results found: %s' % results['total'])
     except shodan.APIError as e:
         print ('Error: %s' % e)
