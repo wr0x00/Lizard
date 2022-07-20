@@ -173,12 +173,15 @@ class ScanPort:
         # 开始时间
         t1 = datetime.now()
         # 设置多进程
-        threads = []
-        pool = ThreadPool(processes=60)
-        pool.map(self.scan_port, ports)
-        pool.close()
-        pool.join()
-        print('端口扫描已完成，耗时：', datetime.now() - t1)
+        try:
+            threads = []
+            pool = ThreadPool(processes=60)
+            pool.map(self.scan_port, ports)
+            pool.close()
+            pool.join()
+            print('端口扫描已完成，耗时：', datetime.now() - t1)
+        except KeyboardInterrupt:#守护线程池
+            pool.terminate()
 
 def search_port():
   file=open("ports.txt",'r')
