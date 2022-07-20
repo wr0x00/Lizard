@@ -4,3 +4,4 @@ python-whois
 shodan
 scapy-python
 dill
+pexpect
