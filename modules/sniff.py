@@ -1,3 +1,5 @@
+# coding=utf-8
+import sys
 import time
 import queue
 import socket
@@ -56,7 +58,7 @@ class Dirscan(object):
         self.scanSite = scanSite if scanSite.find('://') != -1 else 'http://%s' % scanSite
         print ('扫描目标',self.scanSite)
         self.scanDict = scanDict
-        self.scanOutput = scanSite.rstrip('/').replace('https://', '').replace('http://', '')+'.txt' if scanOutput == 0 else scanOutput
+        self.scanOutput = scanSite.rstrip('/').replace('https://', '').replace('http://', '')+'_webdir.txt' if scanOutput == 0 else scanOutput
         truncate = open(self.scanOutput,'w')
         truncate.close()
         self.threadNum = threadNum
@@ -140,12 +142,20 @@ class ScanPort:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             res = s.connect_ex((self.ip, port))
+            portwd=open(r'modules/ports.txt','rb')
             if res == 0:  # 端口开启
-                print('地址:{}\033[0;32;40m端口:{} \033[0m'.format(self.ip, port))
-                with open(self.ip+"_port", 'a+') as f:
-                    f.write(str(port) + '\n')
+                content=portwd.readlines()
+                for c in content:   #从ports.txt中查找端口对应的服务        
+                    if str(port)+"端口"in c.decode(encoding='UTF-8'):
+                        info=c.decode(encoding='UTF-8').strip(str(port)+"端口：")
+                        break
+                print(f'地址:{format(self.ip)}\033[0;32;40m端口:{str(port)} \033[0m\t{info}')
+                with open(self.ip+"_port",'a+',encoding="utf-8") as f:
+                    f.write(str(port) +"\t"+info+'\n')
         except Exception as e:
             print(e)
+            sys.exit[0]
+            
         finally:
             s.close()
  
