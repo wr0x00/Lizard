@@ -140,6 +140,7 @@ class ScanPort:
  
     def scan_port(self, port):
         try:
+            info=""
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             res = s.connect_ex((self.ip, port))
             portwd=open(r'modules/ports.txt','rb')
@@ -149,12 +150,14 @@ class ScanPort:
                     if str(port)+"端口"in c.decode(encoding='UTF-8'):
                         info=c.decode(encoding='UTF-8').strip(str(port)+"端口：")
                         break
+                    else:
+                        continue
                 print(f'地址:{format(self.ip)}\033[0;32;40m端口:{str(port)} \033[0m\t{info}')
                 with open(self.ip+"_port",'a+',encoding="utf-8") as f:
                     f.write(str(port) +"\t"+info+'\n')
         except Exception as e:
             print(e)
-            sys.exit[0]
+            sys.exit(1)
             
         finally:
             s.close()
