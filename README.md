@@ -1,2 +1,2 @@
 # Lizard
-Windows 不支持 pxssh，他么的
+Windows 不支持 pxssh，他妈的
