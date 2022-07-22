@@ -20,7 +20,7 @@ import argparse
 def start_portscan(ip):
     while not modules.sniff.isIP(ip):
         ip = input('地址不正确或未在线，请输入正确的IP地址:\n')
-    modules.sniff.ScanPort(ip).start()
+    modules.sniff.ScanPort(ip)
     
 def connect_mysql(host,user,pwd):
     import mysql.connector
@@ -70,9 +70,9 @@ if __name__ == '__main__':
         parser.add_argument("-dos", "--dos",action='store_true',help="dos attack")        
         parser.add_argument("-ws", "--webshell",type=str, nargs="+",help="webshell url and passwd")      
         parser.add_argument("-ddos", "--ddos",action='store_true', help="ddos exploit,don't need other option,need python2 environment")
-        parser.add_argument("-cve-2018-9995", "--cve2018_9995",action='store_true', help="cve-2018-9995 exploit,use with -rp and -rh")
-        parser.add_argument("-cve-2022-21907", "--cve2022_21907",action='store_true', help="cve-cve-2022_21907 exploit,use with -rh or -url")
-        
+        parser.add_argument("-exp", "--exp",type=str, nargs="+", help="exploit Vulnerability number,such as'cve2018-9995'")
+        parser.add_argument("-expip", "--expip",type=str, help="exploit Vulnerability target ip")
+    
         args = parser.parse_args()
         
         if args.mysql:
@@ -137,15 +137,11 @@ if __name__ == '__main__':
         if args.ddos==True:
             import os
             os.system("python2 modules/ddos.py")
-        if args.cve2018_9995==True and args.rport and args.rhost:
-            import modules.C2018_9995_EXP as e
-            e.exp(args.rhost,args.rport)
-        if args.cve2022_21907==True and (args.url or args.rhost):
-            if args.url:
-                target=args.url
-            else:
-                target=args.rhost
-            import modules.C2022_21907_EXP as e
-            e.exp(target)
+        if args.exp and args.expip:
+            for exp in args.exp:
+                exp=exp.replace("-","_")
+                exp=exp.replace("cve","C")
+                exec("import modules.exp."+exp+"_EXP as t\n")
+                exec(f"t.exp('{args.expip}',{args.rport})")
 
 #end

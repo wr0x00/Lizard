@@ -174,7 +174,6 @@ class ScanPort:
         t1 = datetime.now()
         # 设置多进程
         try:
-            threads = []
             pool = ThreadPool(processes=60)
             pool.map(self.scan_port, ports)
             pool.close()
@@ -182,6 +181,34 @@ class ScanPort:
             print('端口扫描已完成，耗时：', datetime.now() - t1)
         except KeyboardInterrupt:#守护线程池
             pool.terminate()
+
+class ScanPort_:
+    # 模块化端口扫描工具
+    # 返回数组给exp
+    def __init__(self,ip):
+        self.ip = ip
+        self.ports=[]
+    def scan_port(self, port):
+            s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            res = s.connect_ex((self.ip, port))
+            if res == 0:  # 端口开启
+                print(f"发现端口{port}")
+                self.ports.append(port)
+
+    def start(self):
+        from multiprocessing.dummy import Pool as ThreadPool
+        ports = [i for i in range(0, 100)]
+        socket.setdefaulttimeout(0.5)
+        # 设置多进程
+        try:
+            pool = ThreadPool(processes=60)
+            pool.map(self.scan_port,ports)
+            pool.close()
+            pool.join()
+            return self.ports
+        except KeyboardInterrupt:#守护线程池
+            pool.terminate()
+
 
 def search_port():
   file=open("ports.txt",'r')
