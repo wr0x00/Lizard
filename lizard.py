@@ -10,10 +10,6 @@
  BR_COLOUR   = '\033[1;37;40m'
  '''
 import argparse
-from ast import arg
-from logging import exception
-import re
-import string
 import modules.sniff
 import argparse
 
