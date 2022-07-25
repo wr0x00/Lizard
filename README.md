@@ -51,6 +51,7 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
 安装
 --
       git clone https://github.com/wr0x00/Lizard
+      pip install -r requirement.txt
 使用
 ---
        python lizard.py --help
@@ -74,5 +75,15 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
 * -exp -指定多个exp(漏洞名称去掉cve后面短横，写成cveXXXX-XXXX格式) -expip目标ip
    * 例：python lizard.py -exp cve2018-9995 -expip xxx.xxx.xxx.xxx
    * 例：python lizard.py -exp cve2018-9995 cve2022-21907 -expip xxx.xxx.xxx.xxx
+ 
+法律声明
+---
+该项目仅用于学习交流目地，使用者所触犯的法律责任与本项目作者无关，一切未经允许的测试行动皆属于违法行为，请保持清醒，自行斟酌
+
+温馨提示
+---
+* 自己人不打自己人，不要拿祖国同胞开玩笑
+* 建议挂代理，懂的都懂
+* 丧失道德的事能不干就不要干，脚本小子请绕行，法律不容儿戏
 
 顺便吐槽一下pxssh不支持windows,塌蚂的
