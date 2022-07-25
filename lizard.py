@@ -54,7 +54,6 @@ if __name__ == '__main__':
         parser.add_argument("-t", "--thread",type=int, help="threads which be need",default=60)
         parser.add_argument("-poc", "--poc",type=str, help="poc ip")
         #EXP
-        parser.add_argument("-agent", "--agent",action='store_true', help="start agent")
         parser.add_argument("-rp", "--rport",type=int, help="target port,Add according to the other option instructions")
         parser.add_argument("-rh", "--rhost",type=str, help="target host,Add according to the other option instructions")
         parser.add_argument("-lp", "--lport",type=int, help="local port,Add according to the other option instructions")
@@ -114,15 +113,6 @@ if __name__ == '__main__':
                     passwd=i
                 t+=1
             w.exp(url,passwd)   
-        '''             
-        if args.SMBboom:
-            import os
-            os.system("pipenv shell")
-            if args.agent:
-                os.system("python modules/SMSBoom_master/smsboom.py run -e -p "+args.SMBboom)
-            else:
-                os.system("python modules/SMSBoom_master/smsboom.py run -p "+args.SMBboom)
-        '''
         if args.ssh:
             import modules.ssh as s
             if args.directory:
