@@ -27,5 +27,14 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
 安装
 --
       git clone https://github.com/wr0x00/Lizard
-
+使用
+---
+       python lizard.py --help
+* -m 连接MySQL，依次输入地址，用户名，密码
+   * 例：python lizard.py -m localhost root 1234
+* -sp 扫描端口，输入IP
+   * 例：python lizard.py -sp 192.168.1.1
+* -whois whois查询，输入网址
+   * 例：python lizard.py -whois www.baidu.com
+     
 Windows 不支持 pxssh,塌蚂的
