@@ -1,8 +1,8 @@
 # Lizard
 
-![](https://img.shields.io/badge/language-python3.x-informational?style=flat&logo=python&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/language-python-informational?style=flat&logo=python&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/features-convenient-informational?style=flat&color=2bbc8a)
-![](https://img.shields.io/badge/--informational?style=flat&logo=Linux&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/license-MIT License-informational?style=flat&logoColor=white&color=2bbc8a)
 
 Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能丰富，可在多平台快速部署；整体采用模块化设计，可自行改装
 
