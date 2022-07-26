@@ -63,7 +63,7 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
    * 例：python lizard.py -whois www.xxx.com
 * -shodan shodan关键字批量搜索IP，也可单个扫描端口
    * 例：python lizard.py -shodan abc
-   * 例：python lizard.py -shodan 192.168.1.1
+   * 例：python lizard.py -shodan www.xxx.com
 * -sw 扫描网站目录，输入网址,-d指定字典,默认字典dict.txt,-t指定线程，默认60
    * 例：python lizard.py -sw www.xxx.com (-d xxx.txt)(-t xx)
 * -ssh ssh爆破，-rh指定地址，-u指定用户(默认root)，-rp指定端口（默认22），-d指定字典（默认modules\pwddic\password\top1000.txt）
