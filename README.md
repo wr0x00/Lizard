@@ -4,7 +4,7 @@
 ![](https://img.shields.io/badge/features-convenient-informational?style=flat&color=2bbc8a)
 ![](https://img.shields.io/badge/license-MIT_License-informational?style=flat&logoColor=white&color=2bbc8a)
 
-Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能丰富，可在多平台快速部署；整体采用模块化设计，可自行改装
+Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能丰富，可在多平台快速部署；整体采用模块化设计，可自行调用
 
 功能
 ----
@@ -81,4 +81,3 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
 该项目仅用于学习交流目地，使用者所触犯的法律责任与本项目作者无关，一切未经允许的测试行动皆属于违法行为，请保持清醒，自行斟酌
 
 
-顺便吐槽一下pxssh不支持windows,塌蚂的
