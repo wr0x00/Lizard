@@ -1,5 +1,4 @@
 '''
-装逼配色
  BLUE        = '\033[94m'
  GREEN       = '\033[32m'
  RED         = '\033[0;31m'
@@ -45,6 +44,7 @@ def connect_mysql(host,user,pwd):
 
 if __name__ == '__main__':
         parser = argparse.ArgumentParser()
+        
         parser.add_argument("-m","--mysql",type=str,nargs="+", help="mysql host and mysql user,port")
         parser.add_argument("-sp", "--scanportIP",type=str, help="scan ports IP address")
         parser.add_argument("-whois", "--whois",type=str, help="IP whois info")
