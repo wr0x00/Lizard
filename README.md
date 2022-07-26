@@ -68,7 +68,7 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
    * 例：python lizard.py -sw www.xxx.com (-d xxx.txt)(-t xx)
 * -ssh ssh爆破，-rh指定地址，-u指定用户(默认root)，-rp指定端口（默认22），-d指定字典（默认modules\pwddic\password\top1000.txt）
    * 例：python lizard.py -ssh -rp 192.168.1.1 (-u xxx -rp xx -d xxx.txt)
-* -webshell 连接php,asp一句话，依次输入网址、密码
+* -webshell 连接php一句话，依次输入网址、密码
    * 例：python lizard.py -webshell www.xxx.com/abc.php 123
 * -ddos ddos攻击
    * 例：python lizard.py -ddos
