@@ -12,11 +12,6 @@ import argparse
 import modules.sniff
 import argparse
 
-def start_portscan(ip):
-    while not modules.sniff.isIP(ip):
-        ip = input('地址不正确或未在线，请输入正确的IP地址:\n')
-    modules.sniff.ScanPort(ip)
-
 def connect_mysql(host,user,pwd):
     import mysql.connector
     try:
@@ -86,7 +81,9 @@ if __name__ == '__main__':
             connect_mysql(host,user,pwd)
 
         if args.scanportIP:
-            start_portscan(args.scanportIP)
+            while not modules.sniff.isIP(args.scanportIP):
+                args.scanportIP = input('地址不正确或未在线，请输入正确的IP地址:\n')
+            modules.sniff.ScanPort(args.scanportIP).start()
         if args.whois:
             modules.sniff.whois_sniff(args.whois)
         if args.scanwebdirURL:

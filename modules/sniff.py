@@ -135,7 +135,7 @@ def isurl(url):
         return False
 class ScanPort:
     # 端口扫描工具
-    def __init__(self,ip):
+    def __init__(self,ip):# 注意这个调用需要缀上.start()才能启动
         self.ip = ip
  
     def scan_port(self, port):
