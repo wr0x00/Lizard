@@ -208,33 +208,3 @@ class ScanPort_:
             return self.ports
         except KeyboardInterrupt:#守护线程池
             pool.terminate()
-
-
-def search_port():
-  file=open("ports.txt",'r')
-  lines=file.readlines()
-  list_name=[]
-  list_hours=[]
-  list_points=[]
- 
-  for line in lines:
-    elements=line.split()
-    list_name.append(elements[0])
-    list_hours.append(elements[1])
-    list_points.append(elements[2])
- 
-  list_gpa=[] #这个列表用来存放hours 和points之间的比值
- 
-  for i in range(len(list_name)):
-    a=float(list_hours[i])
-    b=float(list_points[i])
-    c=b/a
-    list_gpa.append(str(c))  #把原来list_hours 和list_points中对应项的比值都存到list_gpa列表中
-
-  maxgpa=0
-  for i in range(len(list_gpa)):  #找list_gpa中值最大的那项
-    if maxgpa<float(list_gpa[i]):
-      maxgpa=float(list_gpa[i])
-      index=i  #记录下gpa值最大的那项对应的索引值，方便输出其他项
-  print("the max GPA is {},his name is {} and the scorespoint is {}".format(maxgpa,list_name[index],list_points[index]))
-

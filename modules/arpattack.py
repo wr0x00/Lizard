@@ -4,9 +4,7 @@
 '''[!]'''
 from scapy.all import *
 import threading
-import socket
 import uuid
-import time
 import os
 class exp:
     def ping(attackIP):

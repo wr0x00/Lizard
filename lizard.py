@@ -16,7 +16,7 @@ def start_portscan(ip):
     while not modules.sniff.isIP(ip):
         ip = input('地址不正确或未在线，请输入正确的IP地址:\n')
     modules.sniff.ScanPort(ip)
-    
+
 def connect_mysql(host,user,pwd):
     import mysql.connector
     try:
@@ -50,6 +50,7 @@ if __name__ == '__main__':
         parser.add_argument("-whois", "--whois",type=str, help="IP whois info")
         parser.add_argument("-shodan", "--shodan",type=str, help="shodan search")
         parser.add_argument("-sw", "--scanwebdirURL",type=str, help="web address which be scaned dictionary")
+        parser.add_argument("-c", "--cms",type=str, help="cms url")
         parser.add_argument("-d", "--directory",type=str, help="dictionary which be need")
         parser.add_argument("-t", "--thread",type=int, help="threads which be need",default=60)
         parser.add_argument("-poc", "--poc",type=str, help="poc ip")
@@ -93,11 +94,15 @@ if __name__ == '__main__':
                 modules.sniff.start_dirscan(args.scanwebdirURL,args.directory,args.thread)
             else: 
                 modules.sniff.start_dirscan(args.scanwebdirURL,"modules/dict.txt",args.thread)
+        if args.cms:
+            import modules.cms as cms
+            cms.cms(args.cms)
         if args.shodan:
             modules.sniff.shodan_search(args.shodan)
         if args.poc:
             import os
             os.system("python modules/ws.py -t"+args.poc)
+
         #EXP
         if args.dos and args.rhost and args.rport:
             import modules.dosattack as y
@@ -118,8 +123,7 @@ if __name__ == '__main__':
             if args.directory:
                 s.force_ssh(args.rhost,args.directory,args.user,args.rport)
             else:
-                s.force_ssh(args.rhost,'modules\pwddic\password\top1000.txt',args.user,args.rport)
-                
+                s.force_ssh(args.rhost,'modules\pwddic\password\_top19576.txt',args.user,args.rport)
         if args.ddos==True:
             import os
             os.system("python2 modules/ddos.py")

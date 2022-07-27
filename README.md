@@ -52,6 +52,7 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
 安装
 --
       git clone https://github.com/wr0x00/Lizard
+      python.exe -m pip install --upgrade pip
       pip install -r requirement.txt
 使用
 ---
@@ -67,6 +68,8 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
    * 例：python lizard.py -shodan www.xxx.com
 * -sw 扫描网站目录，输入网址,-d指定字典,默认字典dict.txt,-t指定线程，默认60
    * 例：python lizard.py -sw www.xxx.com (-d xxx.txt)(-t xx)
+* -c 进行CMS扫描，输入网址
+   * 例：python lizard.py -c www.xxx.com
 * -ssh ssh爆破，-rh指定地址，-u指定用户(默认root)，-rp指定端口（默认22），-d指定字典（默认modules\pwddic\password\top1000.txt）
    * 例：python lizard.py -ssh -rp 192.168.1.1 (-u xxx -rp xx -d xxx.txt)
 * -webshell 连接php一句话，依次输入网址、密码
