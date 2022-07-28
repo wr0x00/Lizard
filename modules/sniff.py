@@ -185,7 +185,7 @@ class ScanPort:
 class ScanPort_:
     # 模块化端口扫描工具
     # 返回数组给exp
-    def __init__(self,ip):
+    def __init__(self,ip):# 注意这个调用需要缀上.start()才能启动
         self.ip = ip
         self.ports=[]
     def scan_port(self, port):

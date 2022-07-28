@@ -12,10 +12,10 @@ from utils import http
 
 
 # @universe.groups()
-class CVE_2020_14883(Star):
+class CVE_2021_21907(Star):
     info = {
         'NAME': 'webLogic rce',
-        'CVE': 'CVE-2020-14883',
+        'CVE': 'CVE-2021-21907',
         'TAG': []
     }
     type = target_type.VULNERABILITY
@@ -34,7 +34,7 @@ class CVE_2020_14883(Star):
 
 
 def run(queue: SyncManager.Queue, data: Dict):
-    obj = CVE_2020_14883()
+    obj = CVE_2021_21907()
     result = {
         'IP': data['IP'],
         'PORT': data['PORT'],

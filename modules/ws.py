@@ -52,13 +52,13 @@ if __name__ == '__main__':
                 for it in _f.read().split('\n'):
                     res = re.search(r'^([\w.\-]{,80})([ :](\d{,5}))?$', it)
                     if res:
-                        port = res.group(3) if res.group(3) else '7001'
+                        port = res.group(3) if res.group(3) else '80'#默认端口
                         id = res.group(1) + ':' + port
                         m_target[id] = {'ip': res.group(1), 'port': port}
         else:
             res = re.search(r'^([\w.\-]{,80})([ :](\d{,5}))?$', target)
             if res:
-                port = res.group(3) if res.group(3) else '7001'
+                port = res.group(3) if res.group(3) else '80'#默认端口
                 id = res.group(1) + ':' + port
                 m_target[id] = {'ip': res.group(1), 'port': port}
 
