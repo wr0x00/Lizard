@@ -3,8 +3,13 @@ import sys
 import time
 import queue
 import socket
+from weakref import proxy
 import requests
 import threading
+proxy=None
+def set_agent(p):#设置代理
+    global proxy
+    proxy=p
 def whois_sniff(URL):
     '''
     功能：whois查询
@@ -88,7 +93,7 @@ class Dirscan(object):
             'Cache-Control': 'no-cache',
         }
     def _analysis404(self):
-        notFoundPage = requests.get(self.scanSite + '/songgeshigedashuaibi/hello.html', allow_redirects=False)
+        notFoundPage = requests.get(self.scanSite + '/songgeshigedashuaibi/hello.html',proxies=proxy,allow_redirects=False)
         self.notFoundPageText = notFoundPage.text.replace('/songgeshigedashuaibi/hello.html', '')
 
     def _writeOutput(self, result):
@@ -100,7 +105,7 @@ class Dirscan(object):
     def _scan(self, url):
         html_result = 0
         try:
-            html_result = requests.get(url, headers=self.headers, allow_redirects=False, timeout=60)
+            html_result = requests.get(url, headers=self.headers, allow_redirects=False, proxies=proxy,timeout=60)
         except requests.exceptions.ConnectionError:
             # print 'Request Timeout:%s' % url
             pass
@@ -128,7 +133,7 @@ def isIP(ip):
 def isurl(url):
     header = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
     import requests as r
-    re=r.get(url,headers=header)
+    re=r.get(url,headers=header,proxies=proxy)
     if re.status_code==200:
         return True
     if re.status_code==404:
@@ -197,7 +202,7 @@ class ScanPort_:
 
     def start(self):
         from multiprocessing.dummy import Pool as ThreadPool
-        ports = [i for i in range(0, 100)]
+        ports = [i for i in range(0, 65535)]
         socket.setdefaulttimeout(0.5)
         # 设置多进程
         try:

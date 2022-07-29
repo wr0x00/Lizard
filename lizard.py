@@ -49,7 +49,8 @@ if __name__ == '__main__':
         parser.add_argument("-d", "--directory",type=str, help="dictionary which be need")
         parser.add_argument("-t", "--thread",type=int, help="threads which be need",default=60)
         parser.add_argument("-poc", "--poc",type=str, help="poc ip")
-        #EXP
+        #EXP                
+        parser.add_argument("-a", "--agent",type=str, help="agent,Add according to the other option instructions")
         parser.add_argument("-rp", "--rport",type=int, help="target port,Add according to the other option instructions")
         parser.add_argument("-rh", "--rhost",type=str, help="target host,Add according to the other option instructions")
         parser.add_argument("-lp", "--lport",type=int, help="local port,Add according to the other option instructions")
@@ -65,7 +66,11 @@ if __name__ == '__main__':
         parser.add_argument("-expip", "--expip",type=str, help="exploit Vulnerability target ip")
     
         args = parser.parse_args()
-        
+        if args.agent:
+            agent={'http':args.agent}     
+        else:
+            agent=None
+        modules.sniff.set_agent(agent)
         if args.mysql:
             t=0
             for i in args.mysql:
@@ -93,6 +98,7 @@ if __name__ == '__main__':
                 modules.sniff.start_dirscan(args.scanwebdirURL,"modules/dict.txt",args.thread)
         if args.cms:
             import modules.cms as cms
+            cms.set_agent(agent)
             cms.cms(args.cms)
         if args.shodan:
             modules.sniff.shodan_search(args.shodan)
@@ -107,6 +113,7 @@ if __name__ == '__main__':
 
         if args.webshell:
             import modules.webshell as w
+            w.set_agent(agent)
             t=0
             for i in args.webshell:
                 if t==0:
@@ -129,6 +136,7 @@ if __name__ == '__main__':
                 exp=exp.replace("-","_")
                 exp=exp.replace("cve","C")
                 exec("import modules.exp."+exp+"_EXP as t\n")
+                exec(f"t.set_agent(agent)\n")
                 exec(f"t.exp('{args.expip}',{args.rport})")
 
 #end

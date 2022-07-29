@@ -59,6 +59,8 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
 使用
 ---
        python lizard.py --help
+* -a 启用代理,输入地址,如需使用，在以下选项后面加上此参数
+   * 例：python lizard.py -xxx xxx -a 'https://xxx.xxx.xxx.xxx'
 * -m 连接MySQL，依次输入地址，用户名，密码
    * 例：python lizard.py -m localhost root 1234
 * -sp 扫描端口，输入IP
@@ -80,9 +82,9 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
    * 例：python lizard.py -ddos
 -poc poc批量扫描
    * 例：python lizard.py -poc 192.168.1.1
-* -exp -指定多个exp(漏洞名称去掉cve后面短横，写成cveXXXX-XXXX格式) -expip目标ip
-   * 例：python lizard.py -exp cve2018-9995 -expip xxx.xxx.xxx.xxx
-   * 例：python lizard.py -exp cve2018-9995 cve2022-21907 -expip xxx.xxx.xxx.xxx
+* -exp -指定多个exp(漏洞名称去掉cve后面短横，写成cveXXXX-XXXX格式) -expip目标ip -rp指定端口（若不指定则自动扫描）
+   * 例：python lizard.py -exp cve2018-9995 -expip xxx.xxx.xxx.xxx -rp xx
+   * 例：python lizard.py -exp cve2018-9995 cve2022-21907 -expip xxx.xxx.xxx.xxx -rp xx
  
 法律声明
 ---

