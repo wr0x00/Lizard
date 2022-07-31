@@ -1,6 +1,6 @@
 # Lizard
 
-![](https://img.shields.io/badge/language-python-informational?style=flat&logo=python&logoColor=white&color=2bbc8a)
+![https://www.python.org](https://img.shields.io/badge/language-python-informational?style=flat&logo=python&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/features-convenient-informational?style=flat&color=2bbc8a)
 ![](https://img.shields.io/badge/license-MIT_License-informational?style=flat&logoColor=white&color=2bbc8a)
 [](https://img.shields.io/packagist/stars/wr0x00/Lizard?style=flat-square)
