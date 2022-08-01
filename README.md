@@ -60,7 +60,7 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
 ---
        python lizard.py --help
 * -a 启用代理,输入地址,如需使用，在以下选项后面加上此参数
-   * 例：python lizard.py -xxx xxx -a 'https://xxx.xxx.xxx.xxx'
+   * 例：python lizard.py -xxx xxx -a https://xxx.xxx.xxx.xxx:xx
 * -m 连接MySQL，依次输入地址，用户名，密码
    * 例：python lizard.py -m localhost root 1234
 * -sp 扫描端口，输入IP

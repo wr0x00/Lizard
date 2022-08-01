@@ -4,3 +4,4 @@ python-whois
 shodan
 dill
 pexpect
+pysocks

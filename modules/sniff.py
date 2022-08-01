@@ -7,9 +7,10 @@ from weakref import proxy
 import requests
 import threading
 proxy=None
-def set_agent(p):#设置代理
+def set_agent(p,socks):#设置代理
     global proxy
     proxy=p
+    socket.socket = socks.socksocket
 def whois_sniff(URL):
     '''
     功能：whois查询

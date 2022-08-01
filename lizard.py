@@ -67,10 +67,18 @@ if __name__ == '__main__':
     
         args = parser.parse_args()
         if args.agent:
-            agent={'http':args.agent}     
+            import socks,modules.dosattack
+            agent={'http':args.agent}   
+            http,socks5_proxy_host,socks5_proxy_port = args.agent.split(":")
+            socks5_proxy_host=http+":"+socks5_proxy_host
+            # 设置代理       
+            socks.set_default_proxy(socks.SOCKS5,socks5_proxy_host,socks5_proxy_port)
+            modules.sniff.set_agent(agent,socks)
+            modules.dosattack.set_agent(agent,socks)
         else:
             agent=None
-        modules.sniff.set_agent(agent)
+        
+        
         if args.mysql:
             t=0
             for i in args.mysql:
@@ -88,6 +96,7 @@ if __name__ == '__main__':
         if args.scanportIP:
             while not modules.sniff.isIP(args.scanportIP):
                 args.scanportIP = input('地址不正确或未在线，请输入正确的IP地址:\n')
+            
             modules.sniff.ScanPort(args.scanportIP).start()
         if args.whois:
             modules.sniff.whois_sniff(args.whois)

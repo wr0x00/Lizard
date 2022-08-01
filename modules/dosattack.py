@@ -1,4 +1,4 @@
-from ctypes import sizeof
+
 import socket
 import threading
 import random
@@ -6,6 +6,10 @@ from .sniff import isIP
 Max=200000
 byte=random._urandom(65000)
 c=0
+def set_agent(p,socks):#设置代理
+    global proxy
+    proxy=p
+    socket.socket = socks.socksocket
 class exp:
     def sent(self):
         global c
