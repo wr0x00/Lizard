@@ -1,6 +1,6 @@
 # Lizard
 
-![](https://img.shields.io/badge/language-python-informational?style=flat&logo=python&logoColor=white&color=2bbc8a)
+![https://www.python.org](https://img.shields.io/badge/language-python-informational?style=flat&logo=python&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/features-convenient-informational?style=flat&color=2bbc8a)
 ![](https://img.shields.io/badge/license-MIT_License-informational?style=flat&logoColor=white&color=2bbc8a)
 [](https://img.shields.io/packagist/stars/wr0x00/Lizard?style=flat-square)
@@ -80,7 +80,7 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
    * 例：python lizard.py -webshell www.xxx.com/abc.php 123
 * -ddos ddos攻击
    * 例：python lizard.py -ddos
--poc poc批量扫描
+* -poc poc批量扫描
    * 例：python lizard.py -poc 192.168.1.1
 * -exp -指定多个exp(漏洞名称去掉cve后面短横，写成cveXXXX-XXXX格式) -expip目标ip -rp指定端口（若不指定则自动扫描）
    * 例：python lizard.py -exp cve2018-9995 -expip xxx.xxx.xxx.xxx -rp xx
