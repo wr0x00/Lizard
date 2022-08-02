@@ -1,3 +1,9 @@
+'''
+ *@author:wr
+ *@GitHub:https://github.com/wr0x00/Lizard
+ *@date:2022.8.2
+ *@description: CMS扫描功能
+'''
 #!/usr/bin/env python3
 # coding:utf-8
 import requests

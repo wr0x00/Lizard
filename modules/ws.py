@@ -1,3 +1,9 @@
+'''
+ *@author: wr
+ *@GitHub:https://github.com/wr0x00/Lizard
+ *@date: 2022.8.2
+ *@description: poc批量扫描
+'''
 #!/usr/bin/env python3
 # _*_ coding:utf-8 _*_
 import json
@@ -12,11 +18,13 @@ import stars
 # import stars._import
 from utils.process import AutoProcess
 
-
 if __name__ == '__main__':
-    import argparse
+    import argparse #可当个单独模块来用
 
     parser = argparse.ArgumentParser()
+
+    parser.add_argument('-po', '--po', type=str,default='80',
+                        help='port')
     parser.add_argument('-t', '--targets', required=True, nargs='+',
                         help='target, or targets file(default port 7001). eg. 127.0.0.1:7001')
     parser.add_argument('-v', '--vulnerability', nargs='+',
@@ -27,6 +35,7 @@ if __name__ == '__main__':
                         help='Path to json output(default without output).')
     parser.add_argument('-s', '--ssl', action='store_true',
                         help='Forcing the use of the https protocol.')
+    
     args = parser.parse_args()
 
     s_time = time.time()
@@ -52,13 +61,13 @@ if __name__ == '__main__':
                 for it in _f.read().split('\n'):
                     res = re.search(r'^([\w.\-]{,80})([ :](\d{,5}))?$', it)
                     if res:
-                        port = res.group(3) if res.group(3) else '80'#默认端口
+                        port = res.group(3) if res.group(3) else args.po #默认端口
                         id = res.group(1) + ':' + port
                         m_target[id] = {'ip': res.group(1), 'port': port}
         else:
             res = re.search(r'^([\w.\-]{,80})([ :](\d{,5}))?$', target)
             if res:
-                port = res.group(3) if res.group(3) else '80'#默认端口
+                port = res.group(3) if res.group(3) else args.po #默认端口
                 id = res.group(1) + ':' + port
                 m_target[id] = {'ip': res.group(1), 'port': port}
 

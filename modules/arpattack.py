@@ -1,3 +1,9 @@
+'''
+ *@author:wr
+ *@GitHub:https://github.com/wr0x00/Lizard
+ *@date:2022.8.2
+ *@description: ARP攻击功能
+'''
 #!/usr/bin/python3
 '''[!]'''
 '''[!]can't use'''

@@ -1,10 +1,15 @@
-
+'''
+ *@author:wr
+ *@GitHub:https://github.com/wr0x00/Lizard
+ *@date:2022.8.2
+ *@description: dos攻击功能
+'''
 import socket
 import threading
 import random
-from .sniff import isIP
+from sniff import isIP
 Max=200000
-byte=random._urandom(65000)
+byte=random._urandom(65500)
 c=0
 def set_agent(p,socks):#设置代理
     global proxy

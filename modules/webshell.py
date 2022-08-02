@@ -1,3 +1,10 @@
+'''
+ *@author:wr
+ *@GitHub:https://github.com/wr0x00/Lizard
+ *@date:2022.8.2
+ *@description: webshell木马连接功能
+'''
+
 import requests
 
 proxy=None

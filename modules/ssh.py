@@ -1,7 +1,12 @@
+'''
+ *@author:wr
+ *@GitHub:https://github.com/wr0x00/Lizard
+ *@date:2022.8.2
+ *@description: ssh字典爆破功能
+'''
+
 # /usr/bin/env/python
 # -*- coding:utf-8 -*-
-# _auther:d3ckx1
-
 import paramiko
 class sgin:
     EXC = '[!]'

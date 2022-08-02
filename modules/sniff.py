@@ -1,3 +1,9 @@
+'''
+ *@author: wr
+ *@GitHub:https://github.com/wr0x00/Lizard
+ *@date: 2022.8.2
+ *@description: 嗅探功能
+'''
 # coding=utf-8
 import sys
 import time
@@ -11,14 +17,14 @@ def set_agent(p,socks):#设置代理
     global proxy
     proxy=p
     socket.socket = socks.socksocket
-def whois_sniff(URL):
+def whois_sniff(URL)->None:
     '''
     功能：whois查询
     参数：URL网站地址    
     '''
     import whois
     print(whois.whois(URL))
-def shodan_search(str):
+def shodan_search(str)->None:
     '''
     功能：傻蛋批量搜索
     参数：str关键字
@@ -33,7 +39,7 @@ def shodan_search(str):
         print ('Results found: %s' % results['total'])
     except shodan.APIError as e:
         print ('Error: %s' % e)
-def start_dirscan(URL,Dict,thread):
+def start_dirscan(URL,Dict,thread):     #启动Dirscan类
     scan = Dirscan(URL, Dict, 0, thread)
     for i in range(thread):
         t = threading.Thread(target=scan.run)
@@ -121,8 +127,8 @@ class Dirscan(object):
             url = self.scanSite + self.q.get()
             self._scan(url)
 
-def isIP(ip):
-   #判断是否为正确的IP地址。
+def isIP(ip)->bool:
+   #IP地址是否正确
   ip_addr = ip.split('.')
   if len(ip_addr) != 4:
    return False
@@ -131,7 +137,9 @@ def isIP(ip):
      return False
   else:
    return True
-def isurl(url):
+
+def isurl(url)->bool:
+    #判断网址是否可正常访问
     header = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
     import requests as r
     re=r.get(url,headers=header,proxies=proxy)
@@ -139,6 +147,7 @@ def isurl(url):
         return True
     if re.status_code==404:
         return False
+
 class ScanPort:
     # 端口扫描工具
     def __init__(self,ip):# 注意这个调用需要缀上.start()才能启动
@@ -185,12 +194,12 @@ class ScanPort:
             pool.close()
             pool.join()
             print('端口扫描已完成，耗时：', datetime.now() - t1)
-        except KeyboardInterrupt:#守护线程池
+        except KeyboardInterrupt:   #守护线程池
             pool.terminate()
 
 class ScanPort_:
     # 模块化端口扫描工具
-    # 返回数组给exp
+    # 由exp调用，后返回列表给exp
     def __init__(self,ip):# 注意这个调用需要缀上.start()才能启动
         self.ip = ip
         self.ports=[]
@@ -201,7 +210,7 @@ class ScanPort_:
                 print(f"发现端口{port}")
                 self.ports.append(port)
 
-    def start(self):
+    def start(self)->list:
         from multiprocessing.dummy import Pool as ThreadPool
         ports = [i for i in range(0, 65535)]
         socket.setdefaulttimeout(0.5)
@@ -214,3 +223,4 @@ class ScanPort_:
             return self.ports
         except KeyboardInterrupt:#守护线程池
             pool.terminate()
+#end

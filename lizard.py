@@ -1,4 +1,11 @@
 '''
+ *@author: wr
+ *@GitHub:https://github.com/wr0x00/Lizard
+ *@date: 2022.8.2
+ *@description: 主程序
+'''
+
+'''
  BLUE        = '\033[94m'
  GREEN       = '\033[32m'
  RED         = '\033[0;31m'
@@ -12,7 +19,7 @@ import argparse
 import modules.sniff
 import argparse
 
-def connect_mysql(host,user,pwd):
+def connect_mysql(host,user,pwd)->None:   
     import mysql.connector
     try:
         mydb = mysql.connector.connect(
@@ -79,7 +86,7 @@ if __name__ == '__main__':
             agent=None
         
         
-        if args.mysql:
+        if args.mysql:  #mysql连接
             t=0
             for i in args.mysql:
                 if not i:
@@ -93,34 +100,42 @@ if __name__ == '__main__':
                 t+=1  
             connect_mysql(host,user,pwd)
 
-        if args.scanportIP:
+        if args.scanportIP: #启动端口扫描
             while not modules.sniff.isIP(args.scanportIP):
                 args.scanportIP = input('地址不正确或未在线，请输入正确的IP地址:\n')
             
             modules.sniff.ScanPort(args.scanportIP).start()
-        if args.whois:
+        if args.whois:      #启动whois查询
             modules.sniff.whois_sniff(args.whois)
-        if args.scanwebdirURL:
+
+        if args.scanwebdirURL:  #启动目录扫描
             if args.directory:
                 modules.sniff.start_dirscan(args.scanwebdirURL,args.directory,args.thread)
             else: 
                 modules.sniff.start_dirscan(args.scanwebdirURL,"modules/dict.txt",args.thread)
-        if args.cms:
+
+        if args.cms:    #启动CMS扫描
             import modules.cms as cms
             cms.set_agent(agent)
             cms.cms(args.cms)
-        if args.shodan:
+
+        if args.shodan: #启动shodan
             modules.sniff.shodan_search(args.shodan)
-        if args.poc:
-            import os
-            os.system("python modules/ws.py -t"+args.poc)
+
+        if args.poc:    #启动批量POC检测
+            if args.rport:
+                import os
+                os.system("python modules/ws.py -po "+format(args.rport)+" -t "+args.poc)
+            if not args.rport:
+                import os
+                os.system("python modules/ws.py"+" -t "+args.poc)       
 
         #EXP
-        if args.dos and args.rhost and args.rport:
+        if args.dos and args.rhost and args.rport:  #启动dos攻击
             import modules.dosattack as y
             y.exp(args.rhost,args.rport,args.thread)
 
-        if args.webshell:
+        if args.webshell:   #启动webshell连接
             import modules.webshell as w
             w.set_agent(agent)
             t=0
@@ -131,16 +146,19 @@ if __name__ == '__main__':
                     passwd=i
                 t+=1
             w.exp(url,passwd)   
-        if args.ssh:
+
+        if args.ssh:    #启动ssh爆破
             import modules.ssh as s
             if args.directory:
                 s.force_ssh(args.rhost,args.directory,args.user,args.rport)
             else:
                 s.force_ssh(args.rhost,'modules\pwddic\password\_top19576.txt',args.user,args.rport)
-        if args.ddos==True:
+
+        if args.ddos==True: #启动ddos攻击
             import os
             os.system("python2 modules/ddos.py")
-        if args.exp and args.expip:
+
+        if args.exp and args.expip: #exp
             for exp in args.exp:
                 exp=exp.replace("-","_")
                 exp=exp.replace("cve","C")
