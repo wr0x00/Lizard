@@ -71,6 +71,7 @@ if __name__ == '__main__':
         parser.add_argument("-ddos", "--ddos",action='store_true', help="ddos exploit,don't need other option,need python2 environment")
         parser.add_argument("-exp", "--exp",type=str, nargs="+", help="exploit Vulnerability number,such as'cve2018-9995'")
         parser.add_argument("-expip", "--expip",type=str, help="exploit Vulnerability target ip")
+        parser.add_argument("-subdomain", "--subdomain", type=str,help="burp the subdomain,-d('modules\sumdomain.txt')")
     
         args = parser.parse_args()
         if args.agent:
@@ -165,5 +166,13 @@ if __name__ == '__main__':
                 exec("import modules.exp."+exp+"_EXP as t\n")
                 exec(f"t.set_agent(agent)\n")
                 exec(f"t.exp('{args.expip}',{args.rport})")
+
+        if args.subdomain:
+            print("Start to burp subdmomain...")
+            import modules.subdomain as s
+            if args.directory:
+                s.subdomain(args.subdomain,args.directory)
+            else:
+                s.subdomain(args.subdomain,"modules/subdomain.txt")
 
 #end
