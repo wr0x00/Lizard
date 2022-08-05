@@ -50,6 +50,7 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
 * kali Linux
 * termux(Android)
 * Debian
+* Arch Linux
 
 安装
 --
@@ -85,9 +86,10 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
 * -exp -指定多个exp(漏洞名称去掉cve后面短横，写成cveXXXX-XXXX格式) -expip目标ip -rp指定端口（若不指定则自动扫描）
    * 例：python lizard.py -exp cve2018-9995 -expip xxx.xxx.xxx.xxx -rp xx
    * 例：python lizard.py -exp cve2018-9995 cve2022-21907 -expip xxx.xxx.xxx.xxx -rp xx
- 
+* -subdomain 爆破目录子域名, -d指定字典（默认modules\subdomain.txt)
+   * 例：python lizard.py -subdomain baidu.com (-d xxx.txt)
+
+
 法律声明
 ---
 该项目仅用于学习交流目地，使用者所触犯的法律责任与本项目作者无关，一切未经允许的测试行动皆属于违法行为，请保持清醒，自行斟酌
-
-
