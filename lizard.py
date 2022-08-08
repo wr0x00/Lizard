@@ -15,9 +15,13 @@
  BOLD        = '\033[1m'
  BR_COLOUR   = '\033[1;37;40m'
  '''
+ # coding=utf-8
 import argparse
 import modules.sniff
 
+def ip_position(ip):#查询ip归属地api
+    import requests as r
+    print(r.get("http://ip-api.com/json/"+format(ip)+"?lang=zh-CN").text)
 
 def connect_mysql(host, user, pwd) -> None:
     import mysql.connector
@@ -45,6 +49,20 @@ def connect_mysql(host, user, pwd) -> None:
 
 
 if __name__ == '__main__':
+    try:
+        x=open("first_sgin.txt",'r+')
+    except FileNotFoundError:   #第一次使用该程序
+        import socket,requests,re
+        x=open("first_sgin.txt",'wb+')
+        print('\033[33m')
+        print("该项目仅用于学习交流目地，使用者所触犯的一切法律责任与本项目作者无关\n一切未经允许的测试行动皆属于违法行为，请保持清醒，自行斟酌！\n")
+        print(f"本机名称:{socket.gethostname()}")
+        print(f"本机局域网地址:{socket.gethostbyname(socket.gethostname())}")
+        info=requests.get('http://myip.ipip.net', timeout=5).text
+        print("本机公网"+info)
+        #ip_position(re.findall("\d+",info))
+        print('\033[1;37;40m')
+
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-m", "--mysql", type=str, nargs="+", help="mysql host and mysql user,port")
