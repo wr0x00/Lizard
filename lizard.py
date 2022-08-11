@@ -187,13 +187,16 @@ if __name__ == '__main__':
 
         os.system("python2 modules/ddos.py")
 
-    if args.exp and args.expip:  # exp
+    if args.exp:  # exp
         for exp in args.exp:
             exp = exp.replace("-", "_")
             exp = exp.replace("cve", "C")
             exec("import modules.exp." + exp + "_EXP as t\n")
             exec(f"t.set_agent(agent)\n")
-            exec(f"t.exp('{args.expip}',{args.rport})")
+            if args.expip:
+                exec(f"t.exp('{args.expip}',{args.rport})")
+            if args.rhost:
+                exec(f"t.exp('{args.rhost}',{args.rport})")
 
     if args.subdomain:
         print("Start to burp subdmomain...")
