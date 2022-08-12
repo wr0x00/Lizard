@@ -56,6 +56,7 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
 安装
 --
       git clone https://github.com/wr0x00/Lizard
+      cd Lizard
       python.exe -m pip install --upgrade pip
       pip install -r requirement.txt
 使用
