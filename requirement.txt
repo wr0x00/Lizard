@@ -5,3 +5,4 @@ shodan
 dill
 pexpect
 pysocks
+paramiko
