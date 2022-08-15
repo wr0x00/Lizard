@@ -6,7 +6,7 @@ English|[简体中文](https://github.com/wr0x00/Lizard/blob/main/README_CN.md)
 ![](https://img.shields.io/badge/license-MIT_License-informational?style=flat&logoColor=white&color=2bbc8a)
 [](https://img.shields.io/packagist/stars/wr0x00/Lizard?style=flat-square)
 
-Lizard is a python-based fully automated infiltration script,Feature-rich and can run on termux(Android).
+Lizard is a python-based fully automated infiltration script,feature-rich and can run on termux(Android).
 
 function
 ----
