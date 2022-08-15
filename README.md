@@ -1,5 +1,5 @@
 # Lizard
-English|[简体中文](https://github.com/wr0x00/Lizard/Readme_CN.md)
+English|[简体中文](https://github.com/wr0x00/Lizard/blob/main/README_CN.md)
 
 ![https://www.python.org](https://img.shields.io/badge/language-python-informational?style=flat&logo=python&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/features-convenient-informational?style=flat&color=2bbc8a)
