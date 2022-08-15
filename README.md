@@ -44,8 +44,7 @@ function
     * cve-2022-21907
     * cve-2018-9995
     * WLAN-AP-WEA453e
-    * (Constantly updating)
-    * 
+    * (Updating...)
 Passing
 ------
 * Windows
