@@ -8,7 +8,7 @@ English|[简体中文](https://github.com/wr0x00/Lizard/blob/main/README_CN.md)
 
 Lizard is a python-based fully automated infiltration script,feature-rich and can run on termux(Android).
 
-function
+Function
 ----
 * Sniffing: port scanning, IP probing, blasting, shodan scanning, website directory background scanning, whois query, CMS scanning, poc detection
     * Currently supported pocs are:
