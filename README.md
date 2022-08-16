@@ -98,23 +98,21 @@ API usage
 Lizard has Python API that can be invoked by importing lizard's modules to your code.
 
 ```python
-import modules
+import modules.~
 ```
 
-Files and Basic functions:
-   modules.sniff
-      
-
-exploit(address) - Exploit single camera by given address.
-Examples
-Exploiting single camera
-
-from camover import CamOver
-
-camover = CamOver()
-creds = camover.exploit('192.168.99.100')
-
-print(creds)
+Modules' files and functions:
+   modules.sniff:
+      whois_sniff(URL) #whois lookup
+      shodan_search(str) #shodan keyword batch search IP
+      start_dirscan(URL,Dict,thread)  # scans the website directory
+      isurl(url)->bool #determine if the address is online
+      ScanPort(url).start() #scan opened port
+   modules.cms:
+      cms(url)#Perform a CMS scan
+   modules.dosattack:
+      exp(host:str,port:str,thread:int)#dos attack
+     
  Legal Notices
  ----
  The project is only used for the purpose of learning and communication, the legal responsibility of the user has nothing to do with the author of the project, and all unauthorized test actions are illegal, please stay sober and consider it yourself.
