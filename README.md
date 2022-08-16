@@ -93,6 +93,28 @@ Usage
 * -subdomain blast directory subdomain, -d specifies dictionary (default modulessubdomain.txt)
    * Example: python lizard.py -subdomain www.xxx.com (-d xxx.txt)
  
+API usage
+----
+Lizard has Python API that can be invoked by importing lizard's modules to your code.
+
+```python
+import modules
+```
+
+Files and Basic functions:
+   modules.sniff
+      
+
+exploit(address) - Exploit single camera by given address.
+Examples
+Exploiting single camera
+
+from camover import CamOver
+
+camover = CamOver()
+creds = camover.exploit('192.168.99.100')
+
+print(creds)
  Legal Notices
  ----
  The project is only used for the purpose of learning and communication, the legal responsibility of the user has nothing to do with the author of the project, and all unauthorized test actions are illegal, please stay sober and consider it yourself.
