@@ -79,7 +79,7 @@ Usage
    * Example: python lizard.py -sw www.xxx.com (-d xxx.txt)(-t xx)
 * -c Perform a CMS scan, enter the URL
    * Example: Python lizard.py -c www.xxx.com
-* -ssh ssh blasting, -rh specifies the address, -u specifies the user (default root), -rp specifies the port (default 22), -d specifies the dictionary (default modelespwddicpasswordtop1000.txt)
+* -ssh ssh Brute force cracking, -rh specifies the address, -u specifies the user (default root), -rp specifies the port (default 22), -d specifies the dictionary (default modelespwddicpasswordtop1000.txt)
    * Example: python lizard.py -ssh -rp 192.168.1.1 (-u xxx -rp xx -d xxx.txt)
 * - Webshell Connect php one sentence, enter the URL, password in turn
    Example: python lizard.py -webshell www.xxx.com/abc.php 123
@@ -107,16 +107,22 @@ import modules.~
       start_dirscan(URL,Dict,thread)  # scans the website directory
       isurl(url)->bool #determine if the address is online
       ScanPort(url).start() #scan opened port
+   modules.ssh:
+      force_ssh(host,pwddict,users='root',port=22)#ssh Brute force cracking
+   modules.webshell:
+      exp(url,passwd)#webshell connect
    modules.cms:
-      cms(url)#Perform a CMS scan
+      cms(url) #Perform a CMS scan
+   modules.subdomain:
+      subdomain(domain, dictonary)#blast directory subdomain
    modules.dosattack:
       exp(host:str,port:str,thread:int)#dos attack
  ```
  ### Example
- scan 'www.example.net' directory
+ scan www.xxx.com directory
  ```python
  from modules.sniff import start_dirscan
- start_dirscan(www.example.net)
+ start_dirscan(www.xxx.com)
  ```
  
  Legal Notices
