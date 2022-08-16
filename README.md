@@ -99,9 +99,8 @@ Lizard has Python API that can be invoked by importing lizard's modules to your 
 
 ```python
 import modules.~
-```
 
-Modules' files and functions:
+#Modules' files and functions:
    modules.sniff:
       whois_sniff(URL) #whois lookup
       shodan_search(str) #shodan keyword batch search IP
@@ -112,7 +111,14 @@ Modules' files and functions:
       cms(url)#Perform a CMS scan
    modules.dosattack:
       exp(host:str,port:str,thread:int)#dos attack
-     
+ ```
+ ### Example
+ scan 'www.example.net' directory
+ ```python
+ from modules.sniff import start_dirscan
+ start_dirscan(www.example.net)
+ ```
+ 
  Legal Notices
  ----
  The project is only used for the purpose of learning and communication, the legal responsibility of the user has nothing to do with the author of the project, and all unauthorized test actions are illegal, please stay sober and consider it yourself.
