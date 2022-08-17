@@ -101,21 +101,21 @@ from modules.~ import ~~~
 
 #modules下各文件结构及所属功能:
    modules.sniff:
-      whois_sniff(URL) #whois lookup
-      shodan_search(str) #shodan keyword batch search IP
-      start_dirscan(URL,Dict,thread)  # scans the website directory
-      isurl(url)->bool #determine if the address is online
-      ScanPort(url).start() #scan opened port
+      whois_sniff(URL) #whois查询
+      shodan_search(str) #傻蛋(shodan)关键字批量检索IP
+      start_dirscan(URL,Dict,thread)  # 扫描网站目录
+      isurl(url)->bool #验证该网址是否可以正常连接
+      ScanPort(url).start() #扫描端口,注意此类需要后缀start()才能启动
    modules.ssh:
-      force_ssh(host,pwddict,users='root',port=22)#ssh Brute force cracking
+      force_ssh(host,pwddict,users='root',port=22)#爆破ssh
    modules.webshell:
-      exp(url,passwd)#webshell connect
+      exp(url,passwd)#webshell一句话连接
    modules.cms:
-      cms(url) #Perform a CMS scan
+      cms(url) #CMS扫描
    modules.subdomain:
-      subdomain(domain, dictonary)#blast directory subdomain
+      subdomain(domain, dictonary)#子域名爆破
    modules.dosattack:
-      exp(host:str,port:str,thread:int)#dos attack
+      exp(host:str,port:str,thread:int)#dos攻击
  ```
 ### 例如
 扫描www.xxx.com的目录
