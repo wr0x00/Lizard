@@ -91,6 +91,38 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
 * -subdomain 爆破目录子域名, -d指定字典（默认modules\subdomain.txt)
    * 例：python lizard.py -subdomain www.xxx.com (-d xxx.txt)
 
+API 使用说明
+----
+Lizard 拥有独有的api,可根据需求自行调用
+```python
+import modules.~
+或
+from modules.~ import ~~~ 
+
+#modules下各文件结构及所属功能:
+   modules.sniff:
+      whois_sniff(URL) #whois lookup
+      shodan_search(str) #shodan keyword batch search IP
+      start_dirscan(URL,Dict,thread)  # scans the website directory
+      isurl(url)->bool #determine if the address is online
+      ScanPort(url).start() #scan opened port
+   modules.ssh:
+      force_ssh(host,pwddict,users='root',port=22)#ssh Brute force cracking
+   modules.webshell:
+      exp(url,passwd)#webshell connect
+   modules.cms:
+      cms(url) #Perform a CMS scan
+   modules.subdomain:
+      subdomain(domain, dictonary)#blast directory subdomain
+   modules.dosattack:
+      exp(host:str,port:str,thread:int)#dos attack
+ ```
+### 例如
+扫描www.xxx.com的目录
+```python
+from modules.sniff import start_dirscan
+start_dirscan(www.xxx.com)
+```
 
 法律声明
 ---
