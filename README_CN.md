@@ -127,3 +127,5 @@ start_dirscan(www.xxx.com)
 法律声明
 ---
 该项目仅用于学习交流目地，使用者所触犯的法律责任与本项目作者无关，一切未经允许的测试行动皆属于违法行为，请保持清醒，自行斟酌
+
+[![Stargazers over time](https://starchart.cc/wr0x00/Lizard.svg)](https://starchart.cc/wr0x00/Lizard)
