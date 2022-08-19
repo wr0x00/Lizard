@@ -5,6 +5,7 @@ English|[简体中文](https://github.com/wr0x00/Lizard/blob/main/README_CN.md)
 ![](https://img.shields.io/badge/features-convenient-informational?style=flat&color=2bbc8a)
 ![](https://img.shields.io/badge/license-MIT_License-informational?style=flat&logoColor=white&color=2bbc8a)
 [](https://img.shields.io/packagist/stars/wr0x00/Lizard?style=flat-square)
+[![OSCS Status](https://www.oscs1024.com/platform/badge/wr0x00/Lizard.svg?size=small)](https://www.oscs1024.com/project/wr0x00/Lizard?ref=badge_small)
 
 Lizard is a python-based fully automated infiltration script,feature-rich and can run on termux(Android).
 
