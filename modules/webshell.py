@@ -7,6 +7,20 @@
 
 import requests
 
+'''设置语言'''
+if not __name__ == '__main__':
+    try:
+        x=open("first_sgin.txt",'r+')
+        language=x.readline()
+        if language=='cn'or language=='CN': #中文
+            from .strings import String_CN as Str
+        if language=='en'or language=='EN': #英文
+            from .strings import String_EN as Str
+        x.close()
+    except Exception:
+        print("ERROR")
+        from .strings import String_EN as Str
+
 proxy=None
 def set_agent(p):#设置代理
     global proxy
@@ -59,13 +73,13 @@ def exp(url,passwd):
     else:
         url="http://"+url  
     if isurl(url)==False:
-        print("访问失败")
+        print(Str.ERROR_CONNECT)
         exit()
     parameter=passwd
     pa=php_horse(url,parameter,header) #pa为路径判断所需函数
     while True:
         if pa=="exit":
-            print("exit")
+            print(Str.EXIT)
             break
         elif pa!="":
             pa=php_horse(url,parameter,header,pa=pa)

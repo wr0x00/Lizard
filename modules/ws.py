@@ -19,6 +19,20 @@ import stars
 from utils.process import AutoProcess
 
 if __name__ == '__main__':
+    '''
+    try:
+        x=open("first_sgin.txt",'r+')
+        language=x.readline()
+        if language=='cn'or language=='CN': #中文
+            from .strings import String_CN as Str
+        if language=='en'or language=='EN': #英文
+            from .strings import String_EN as Str
+        x.close()
+    except Exception:
+        print("ERROR")
+        from .strings import String_EN as Str'''
+
+
     import argparse #可当个单独模块来用
 
     parser = argparse.ArgumentParser()
@@ -91,7 +105,7 @@ if __name__ == '__main__':
                     'IP': m_target[key]['ip'], 'PORT': m_target[key]['port'], 'IS_SSL': args.ssl}
                 autopro.put_task(module.run, [data], queue=True)
         except:
-            print('ERROR:\n' + traceback.format_exc())
+            print(Str.ERROR_CONNECT+':\n' + traceback.format_exc())
 
     # for key in m_target:
     #     for group_name in stars.universe.actived:
@@ -129,4 +143,4 @@ if __name__ == '__main__':
                     args.output, f'result_{time.strftime("%m%d_%H%M%S", time.localtime(time.time()))}.json'),
                 'w') as _f:
             _f.write(json.dumps(result))
-    print('Run completed, {} seconds total.'.format(int(time.time() - s_time)))
+    print(f'{Str.SUCCESS_SCAN}, {Str.TIME_TOTAL}{format(int(time.time() - s_time))}')

@@ -10,6 +10,20 @@ import requests
 import zlib
 import json
 
+'''设置语言'''
+if not __name__ == '__main__':
+    try:
+        x=open("first_sgin.txt",'r+')
+        language=x.readline()
+        if language=='cn'or language=='CN': #中文
+            from .strings import String_CN as Str
+        if language=='en'or language=='EN': #英文
+            from .strings import String_EN as Str
+        x.close()
+    except Exception:
+        print("ERROR")
+        from .strings import String_EN as Str
+
 proxy=None
 def set_agent(p):#设置代理
     global proxy
@@ -28,6 +42,6 @@ def whatweb(url):
 
 def cms(url):
     request = whatweb(url)
-    print(u"今日剩余次数"+request.headers["X-RateLimit-Remaining"])
-    print(u"识别结果:")
+    print(Str.REMAINING_TIMES+request.headers["X-RateLimit-Remaining"])
+    print(Str.RESULTS)
     print(request.json())

@@ -9,14 +9,32 @@ import sys
 import time
 import queue
 import socket
+from tokenize import String
 from weakref import proxy
 import requests
 import threading
+from .strings import MessageSign as Sign
+
+'''设置语言'''
+if not __name__ == '__main__':
+    try:
+        x=open("first_sgin.txt",'r+')
+        language=x.readline()
+        if language=='cn'or language=='CN': #中文
+            from .strings import String_CN as Str
+        if language=='en'or language=='EN': #英文
+            from .strings import String_EN as Str
+        x.close()
+    except Exception:
+        print("ERROR")
+        from .strings import String_EN as Str
+
 proxy=None
 def set_agent(p,socks):#设置代理
     global proxy
     proxy=p
     socket.socket = socks.socksocket
+
 def whois_sniff(URL)->None:
     '''
     功能：whois查询
@@ -36,9 +54,10 @@ def shodan_search(str)->None:
         results = api.search(str)
         for result in results['matches']:         
                 print ("\033[0;32;40m%s\033[0m:\033[0;31m%s\033[1;37;40m|%s|%s"%(result['ip_str'],result['port'],result['location']['country_name'],result['hostnames']))
-        print ('Results found: %s' % results['total'])
+        print (Str.RESULTS_TOTAL+format(results['total']))
     except shodan.APIError as e:
-        print ('Error: %s' % e)
+        print (Str.ERROR_CONNECT+":"+e)
+
 def start_dirscan(URL,Dict,thread):     #启动Dirscan类
     scan = Dirscan(URL, Dict, 0, thread)
     for i in range(thread):
@@ -53,10 +72,10 @@ def start_dirscan(URL,Dict,thread):     #启动Dirscan类
             try:
                 time.sleep(0.1)
             except KeyboardInterrupt as e:
-                print ('\n[WARNING] User aborted, wait all slave threads to exit, current(%i)'% threading.activeCount())
+                print (f'\n{Sign.STR}{Str.STOPING},{Str.THREAD_EXIT},{Str.THREAD_TOTAL}{format(threading.activeCount())}')
                 scan.STOP_ME = True
 
-    print ('Scan end!!!')
+    print (Str.SUCCESS_SCAN)
 class Dirscan(object):
     '''
     功能：扫描目录
@@ -66,9 +85,9 @@ class Dirscan(object):
          threadNum线程，        
     '''
     def __init__(self, scanSite, scanDict, scanOutput=0,threadNum=60):
-        print ('正在扫描目录',scanDict)
+        print (Str.LOADING+scanDict)
         self.scanSite = scanSite if scanSite.find('://') != -1 else 'http://%s' % scanSite
-        print ('扫描目标',self.scanSite)
+        print (Str.TARGET+self.scanSite)
         self.scanDict = scanDict
         self.scanOutput = scanSite.rstrip('/').replace('https://', '').replace('http://', '')+'_webdir.txt' if scanOutput == 0 else scanOutput
         truncate = open(self.scanOutput,'w')
@@ -87,9 +106,9 @@ class Dirscan(object):
                 if line[0:1] != '#':
                     self.q.put(line.strip())
         if self.q.qsize() > 0:
-            print ('字典总计',self.q.qsize())
+            print (Str.DICT_TOTAL+format(self.q.qsize()))
         else:
-            print ('字典为空?')
+            print (Str.ERROT_DICT)
             quit()
 
     def _loadHeaders(self):
@@ -162,12 +181,12 @@ class ScanPort:
             if res == 0:  # 端口开启
                 content=portwd.readlines()
                 for c in content:   #从ports.txt中查找端口对应的服务        
-                    if str(port)+"端口"in c.decode(encoding='UTF-8'):
+                    if str(port)+Str.PORT in c.decode(encoding='UTF-8'):
                         info=c.decode(encoding='UTF-8').strip(str(port)+"端口：")
                         break
                     else:
                         continue
-                print(f'地址:{format(self.ip)}\033[0;32;40m端口:{str(port)} \033[0m\t{info}')
+                print(f'地址:{format(self.ip)}\033[0;32;40m{Str.PORT}:{str(port)} \033[0m\t{info}')
                 with open(self.ip+"_port",'a+',encoding="utf-8") as f:
                     f.write(str(port) +"\t"+info+'\n')
         except Exception as e:
@@ -184,16 +203,17 @@ class ScanPort:
         socket.setdefaulttimeout(0.5)
         truncate = open(self.ip+"_port",'w')
         truncate.close()
-        print("正在扫描")
+        print(Str.LOADING)
         # 开始时间
         t1 = datetime.now()
         # 设置多进程
+
         try:
             pool = ThreadPool(processes=60)
             pool.map(self.scan_port, ports)
             pool.close()
             pool.join()
-            print('端口扫描已完成，耗时：', datetime.now() - t1)
+            print(Str.SUCCESS_SCAN+','+Str.TIME_TOTAL+format(datetime.now() - t1))
         except KeyboardInterrupt:   #守护线程池
             pool.terminate()
 
@@ -207,7 +227,7 @@ class ScanPort_:
             s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             res = s.connect_ex((self.ip, port))
             if res == 0:  # 端口开启
-                print(f"发现端口{port}")
+                print(f"{Str.FOUND}{Str.PORT}:{port}")
                 self.ports.append(port)
 
     def start(self)->list:

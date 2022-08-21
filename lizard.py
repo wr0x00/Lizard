@@ -17,6 +17,7 @@
  '''
  # coding=utf-8
 import argparse
+from modules import strings
 import modules.sniff
 
 def ip_position(ip):#查询ip归属地api
@@ -49,19 +50,44 @@ def connect_mysql(host, user, pwd) -> None:
 
 
 if __name__ == '__main__':
+    from modules.strings import MessageSign as sgin
     try:
         x=open("first_sgin.txt",'r+')
-    except FileNotFoundError:   #第一次使用该程序
-        import socket,requests,re
-        x=open("first_sgin.txt",'wb+')
-        print('\033[33m')
-        print("该项目仅用于学习交流目地，使用者所触犯的一切法律责任与本项目作者无关\n一切未经允许的测试行动皆属于违法行为，请保持清醒，自行斟酌！\n")
-        print(f"本机名称:{socket.gethostname()}")
-        print(f"本机局域网地址:{socket.gethostbyname(socket.gethostname())}")
-        info=requests.get('http://myip.ipip.net', timeout=5).text
-        print("本机公网"+info)
-        #ip_position(re.findall("\d+",info))
-        print('\033[1;37;40m')
+        language=x.readline()
+        if language=='cn'or language=='CN': #中文
+            from modules.strings import String_CN as String
+        if language=='en'or language=='EN': #英文
+            from modules.strings import String_EN as String
+        x.close()
+
+    except FileNotFoundError:   #若first_sgin.txt不存在，则第一次使用该程序，创建first_sgin.txt，提示警告语；若存在，则跳过
+        import socket,requests
+        x=open("first_sgin.txt",'w')#first_sgin.txt只是一个标志性文件，只写入所选语言类型
+        while True:
+            language=input("choose your local language/选择你的语言(EN|CN):")
+            if language=='cn'or language=='CN': #中文
+                x.write("CN")
+                from modules.strings import String_CN as String
+                break
+            if language=='en'or language=='EN': #英文
+                x.write("EN")
+                from modules.strings import String_EN as String
+                break
+            else:
+                print(sgin.EXC+"Please chose your language correctly!/选择语言错误！")
+            x.close()
+
+        print('\033[33m')   #黄色标记开始
+        print(String.WARNING+"\n")  #警告语
+        print(f"{String.LOCALHOST_LAN}{socket.gethostname()}")  #本机名
+        print(f"{String.LOCALHOST_LAN}{socket.gethostbyname(socket.gethostname())}")    #局域地址
+        try:
+            info=requests.get('http://myip.ipip.net', timeout=5).text
+            print(String.LOCALHOST_WAN+info)    #广域地址
+            #ip_position(re.findall("\d+",info))
+        except requests.exceptions.ConnectionError:
+            pass
+        print('\033[1;37;40m')#黄色标记结束
 
     parser = argparse.ArgumentParser()
 
@@ -124,7 +150,7 @@ if __name__ == '__main__':
 
     if args.scanportIP:  # 启动端口扫描
         while not modules.sniff.isIP(args.scanportIP):
-            args.scanportIP = input('地址不正确或未在线，请输入正确的IP地址:\n')
+            args.scanportIP = input(String.ERROR_IP_FORMAT+'\n')
 
         modules.sniff.ScanPort(args.scanportIP).start()
     if args.whois:  # 启动whois查询
@@ -199,7 +225,7 @@ if __name__ == '__main__':
                 exec(f"t.exp('{args.rhost}',{args.rport})")
 
     if args.subdomain:
-        print("Start to burp subdmomain...")
+        print(String.LOADING)
         import modules.subdomain as s
 
         if args.directory:
