@@ -94,6 +94,12 @@ Usage
 * -subdomain blast directory subdomain, -d specifies dictionary (default modulessubdomain.txt)
    * Example: python lizard.py -subdomain www.xxx.com (-d xxx.txt)
  
+Tip:The first time you use the program, you will be asked to select the language
+ ```shell
+   choose your local language/选择你的语言(EN|CN):
+ ```
+ choose EN.
+ 
 API usage
 ----
 Lizard has Python API that can be invoked by importing lizard's modules to your code.
