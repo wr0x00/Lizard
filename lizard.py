@@ -100,6 +100,7 @@ if __name__ == '__main__':
     parser.add_argument("-d", "--directory", type=str, help="dictionary which be need")
     parser.add_argument("-t", "--thread", type=int, help="threads which be need", default=60)
     parser.add_argument("-poc", "--poc", type=str, help="poc ip")
+    
     # EXP
     parser.add_argument("-a", "--agent", type=str, help="agent,Add according to the other option instructions")
     parser.add_argument("-rp", "--rport", type=int, help="target port,Add according to the other option instructions")
@@ -121,9 +122,9 @@ if __name__ == '__main__':
     parser.add_argument("-subdomain", "--subdomain", type=str, help="burp the subdomain,-d('modules\sumdomain.txt')")
 
     args = parser.parse_args()
+    
     if args.agent:
         import socks, modules.dosattack
-
         agent = {'http': args.agent}
         http, socks5_proxy_host, socks5_proxy_port = args.agent.split(":")
         socks5_proxy_host = http + ":" + socks5_proxy_host
@@ -164,7 +165,6 @@ if __name__ == '__main__':
 
     if args.cms:  # 启动CMS扫描
         import modules.cms as cms
-
         cms.set_agent(agent)
         cms.cms(args.cms)
 
@@ -174,14 +174,12 @@ if __name__ == '__main__':
     if args.poc:  # 启动批量POC检测
         if args.rport:
             import os
-
             os.system("python modules/ws.py -po " + format(args.rport) + " -t " + args.poc)
         if not args.rport:
             import os
-
             os.system("python modules/ws.py" + " -t " + args.poc)
 
-            # EXP
+    # EXP
     if args.dos and args.rhost and args.rport:  # 启动dos攻击
         import modules.dosattack as y
 
@@ -189,7 +187,6 @@ if __name__ == '__main__':
 
     if args.webshell:  # 启动webshell连接
         import modules.webshell as w
-
         w.set_agent(agent)
         t = 0
         for i in args.webshell:
@@ -202,7 +199,6 @@ if __name__ == '__main__':
 
     if args.ssh:  # 启动ssh爆破
         import modules.ssh as s
-
         if args.directory:
             s.force_ssh(args.rhost, args.directory, args.user, args.rport)
         else:
@@ -210,7 +206,6 @@ if __name__ == '__main__':
 
     if args.ddos == True:  # 启动ddos攻击
         import os
-
         os.system("python2 modules/ddos.py")
 
     if args.exp:  # exp
@@ -227,10 +222,11 @@ if __name__ == '__main__':
     if args.subdomain:
         print(String.LOADING)
         import modules.subdomain as s
-
         if args.directory:
             s.subdomain(args.subdomain, args.directory)
         else:
             s.subdomain(args.subdomain, "modules/subdomain.txt")
-
-# end
+          
+          
+# When you go looking for prey at night by flashlight light, ,you expose yourself similarly.
+# end start
