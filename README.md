@@ -7,7 +7,7 @@ English|[简体中文](https://github.com/wr0x00/Lizard/blob/main/README_CN.md)
 [](https://img.shields.io/packagist/stars/wr0x00/Lizard?style=flat-square)
 [![OSCS Status](https://www.oscs1024.com/platform/badge/wr0x00/Lizard.svg?size=small)](https://www.oscs1024.com/project/wr0x00/Lizard?ref=badge_small)
 
-Lizard is a python-based portable cybersecurity penetration testing tool,integrate multiple functions and it can even run on termux(Android).
+Lizard is a python-based network security penetration testing tool,integrate multiple functions and it can even run on termux(Android).
 
 Function
 ----
