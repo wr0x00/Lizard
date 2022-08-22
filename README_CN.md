@@ -91,6 +91,11 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
    * 例：python lizard.py -exp cve2018-9995 cve2022-21907 -expip xxx.xxx.xxx.xxx -rp xx
 * -subdomain 爆破目录子域名, -d指定字典（默认modules\subdomain.txt)
    * 例：python lizard.py -subdomain www.xxx.com (-d xxx.txt)
+注:首次使用该程序请选择语言
+```shell
+choose your local language/选择你的语言(EN|CN):
+```
+选择CN即可.
 
 API 使用说明
 ----
