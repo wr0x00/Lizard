@@ -134,4 +134,4 @@ import modules.~
  
  Legal Notices
  ----
- The project is only used for the purpose of learning and communication, the legal responsibility of the user has nothing to do with the author of the project, and all unauthorized test actions are illegal, please stay sober and consider it yourself.
+ The project is only used for the purpose of learning and communication, Any legal liability violated by the user has nothing to do with the author of this project, and all unauthorized test actions are illegal, please stay sober.
