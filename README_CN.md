@@ -11,7 +11,7 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
 功能
 ----
 * 嗅探：端口扫描、IP探测、爆破（目前只支持ssh）、shodan扫描、网站目录后台扫描、whois查询，CMS扫描，poc检测
-    * [目前支持的poc](https://github.com/wr0x00/Lizard/wiki/Support_POC_CN)
+    * [目前支持的poc](https://github.com/wr0x00/Lizard/wiki/Supported_poc_CN)
 * webshell一句话连接（目前只支持模拟终端功能，以后会完善）
 * dos攻击，ddos攻击(外接模块，需要python2，python3的正在开发中)
 * exp利用
