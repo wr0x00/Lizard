@@ -45,6 +45,7 @@ Function
     * cve-2022-21907
     * cve-2018-9995
     * WLAN-AP-WEA453e
+    * cve-2019-16313
     * (Updating...)
  
 Tested environment
