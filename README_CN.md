@@ -6,7 +6,7 @@
 [](https://img.shields.io/packagist/stars/wr0x00/Lizard?style=flat-square)
 [![OSCS Status](https://www.oscs1024.com/platform/badge/wr0x00/Lizard.svg?size=small)](https://www.oscs1024.com/project/wr0x00/Lizard?ref=badge_small)
 
-Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能丰富，可在多平台快速部署；整体采用模块化设计，可自行调用
+Lizard一款基于python的web安全渗透测试集成工具，可在多平台快速部署；拥有独立API
 
 功能
 ----
