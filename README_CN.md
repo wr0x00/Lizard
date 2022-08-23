@@ -11,41 +11,12 @@ Lizard是一款基于python的全自动化渗透脚本，小巧轻便，功能�
 功能
 ----
 * 嗅探：端口扫描、IP探测、爆破（目前只支持ssh）、shodan扫描、网站目录后台扫描、whois查询，CMS扫描，poc检测
-    * 目前可支持的poc有：
-    * cve_2016_0638
-    * cve_2016_3510
-    * cve_2017_10271
-    * cve_2017_3248
-    * cve_2017_3506
-    * cve_2018_2628
-    * cve_2018_2893
-    * cve_2018_2894
-    * cve_2018_3191
-    * cve_2018_3245
-    * cve_2018_3252
-    * cve_2019_2618
-    * cve_2019_2725
-    * cve_2019_2729
-    * cve_2019_2888
-    * cve_2019_2890
-    * cve_2020_14750
-    * cve_2020_14882
-    * cve_2020_14883
-    * cve_2020_2551
-    * cve_2020_2555
-    * cve_2020_2883
-    * CNVD_2021_30167
-    * CVE_2021_21907
-    * （不断更新中）
+    * [目前可支持的poc](https://github.com/wr0x00/Lizard/wiki/Support_POC_CN)
 * webshell一句话连接（目前只支持模拟终端功能，以后会完善）
 * dos攻击，ddos攻击(外接模块，需要python2，python3的正在开发中)
 * exp利用
-    * 目前支持的exp有：
-    * cve-2022-21907
-    * cve-2018-9995
-    * WLAN-AP-WEA453e
-    * （不断更新中）
-
+    * [目前支持的exp有](https://github.com/wr0x00/Lizard/wiki/Support_EXP_CN)
+   
 已测试环境
 ------
 * Windows
