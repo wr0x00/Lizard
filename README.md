@@ -12,32 +12,8 @@ Lizard is a python-based network security penetration testing tool,integrate mul
 Function
 ----
 * Sniffing: port scanning, IP probing, blasting, shodan scanning, website directory background scanning, whois query, CMS scanning, poc detection
-    * Currently supported pocs are:
-    * cve_2016_0638
-    * cve_2016_3510
-    * cve_2017_10271
-    * cve_2017_3248
-    * cve_2017_3506
-    * cve_2018_2628
-    * cve_2018_2893
-    * cve_2018_2894
-    * cve_2018_3191
-    * cve_2018_3245
-    * cve_2018_3252
-    * cve_2019_2618
-    * cve_2019_2725
-    * cve_2019_2729
-    * cve_2019_2888
-    * cve_2019_2890
-    * cve_2020_14750
-    * cve_2020_14882
-    * cve_2020_14883
-    * cve_2020_2551
-    * cve_2020_2555
-    * cve_2020_2883
-    * CNVD_2021_30167
-    * CVE_2021_21907
-    * (Updating...)
+    * [Currently supported pocs](https://github.com/wr0x00/Lizard/wiki/supported_poc_EN)
+    
 * Webshell connection (currently only supports analog terminal function, will be improved in the future)
 * dos attack, ddos attack (external module, python2 required, python3 is under development)
 * exp utilization
