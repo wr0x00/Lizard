@@ -17,12 +17,7 @@ Function
 * Webshell connection (currently only supports analog terminal function, will be improved in the future)
 * dos attack, ddos attack (external module, python2 required, python3 is under development)
 * exp utilization
-    * Currently supported exps are:
-    * cve-2022-21907
-    * cve-2018-9995
-    * WLAN-AP-WEA453e
-    * cve-2019-16313
-    * (Updating...)
+    * [Currently supported exps](https://github.com/wr0x00/Lizard/wiki/Support_EXP_EN)
  
 Tested environment
 ------
