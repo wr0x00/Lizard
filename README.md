@@ -19,7 +19,7 @@ Function
 * exp utilization
     * [Currently supported exps](https://github.com/wr0x00/Lizard/wiki/Support_EXP_EN)
  
-Tested environment
+Tested on
 ------
 * Windows
 * kali Linux
