@@ -7,6 +7,9 @@ English|[简体中文](https://github.com/wr0x00/Lizard/blob/main/README_CN.md)
 [](https://img.shields.io/packagist/stars/wr0x00/Lizard?style=flat-square)
 [![OSCS Status](https://www.oscs1024.com/platform/badge/wr0x00/Lizard.svg?size=small)](https://www.oscs1024.com/project/wr0x00/Lizard?ref=badge_small)
 
+>本程序屎山代码已不再维护，请各位客官移步至升级版[Lsploit](https://github.com/wr0x00/Lsploit),继承并扩充了更丰富的功能，速度更加高效，代码更加简洁，易操作
+>以品尝沥血之作😅😅
+
 Lizard is a python-based network security penetration testing tool,integrate multiple functions and it can even run on termux(Android).
 
 Function
