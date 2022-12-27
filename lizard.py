@@ -78,7 +78,7 @@ if __name__ == '__main__':
             x.close()
 
         print('\033[33m')   #黄色标记开始
-        print(String.WARNING+"\n")  #警告语
+        #print(String.WARNING+"\n")  #警告语
         print(f"{String.LOCALHOST_LAN}{socket.gethostname()}")  #本机名
         print(f"{String.LOCALHOST_LAN}{socket.gethostbyname(socket.gethostname())}")    #局域地址
         try:
