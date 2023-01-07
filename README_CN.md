@@ -99,7 +99,7 @@ from modules.~ import ~~~
 扫描www.xxx.com的目录
 ```python
 from modules.sniff import start_dirscan
-start_dirscan(www.xxx.com)
+start_dirscan('www.xxx.com')
 ```
 
 法律声明
